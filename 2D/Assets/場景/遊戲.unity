@@ -1343,10 +1343,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b5d4362e2669d41a3927064dd79dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 1
+  _state: 0
   SayStart: "\u5B89\u5B89\uFF0C\u6211\u8981\u4F86\u9EDEGet High\u7684"
-  SayNotComplete: "\u4F60\u9084\u6C92\u6E96\u5099\u597D"
-  SayComplete: "\u8B1D\u5927\u54E5"
+  SayNotComplete: "\u9084\u4E0D\u5920HIGH!!"
+  SayComplete: "\u963F\u65AF~~~~"
   Speed: 1.1
   Complete: 0
   CountPlayer: 0

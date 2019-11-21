@@ -16,7 +16,7 @@ public class B1040412HW : MonoBehaviour
 
     [Header("對話")]
     public string SayStart = "安安，我要來點Get High的";
-    public string SayNotComplete = "你還沒準備好";
+    public string SayNotComplete = "還不夠HIGH";
     public string SayComplete = "謝大哥";
     [Header("對話速度")]
     public float Speed = 1.1f;
@@ -47,7 +47,19 @@ public class B1040412HW : MonoBehaviour
     private void Say()
     {
             gObject.SetActive(true);
-            textSay.text = SayStart;
+
+        switch(_state)
+        {
+            case state.Normal:
+                textSay.text = SayStart;
+                break;
+            case state.Complete:
+                textSay.text = SayComplete;
+                break;
+            case state.NotComplete:
+                textSay.text = SayNotComplete;
+                break;
+        }
     }
     /// <summary>
     /// 關閉對話
