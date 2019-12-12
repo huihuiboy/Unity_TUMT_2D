@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;  //引用Unity API(倉庫、功能、工具)
+using UnityEngine.Events;           // 引用 事件 API
 
 
 public class fox : MonoBehaviour{  //類別 類別名稱
@@ -12,10 +13,15 @@ public class fox : MonoBehaviour{  //類別 類別名稱
     public string  foxName = "foxy" ;
     public bool pass = false;
     public bool isGround;
+    public UnityEvent onEat;
 
     private Rigidbody2D foxyee;
     private Animator ani;
     //private Transform tra;  原始寫法
+
+    public AudioClip soundJum;
+
+    private AudioSource aud;
 
     private void Start() //開始事件：遊戲開始時執行一次
     {
@@ -23,6 +29,7 @@ public class fox : MonoBehaviour{  //類別 類別名稱
         ani = gameObject.GetComponent<Animator>();
         //tra = GetComponent<Transform>();
         ani.SetBool("run", false);
+        aud = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -46,6 +53,15 @@ public class fox : MonoBehaviour{  //類別 類別名稱
         isGround = true;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "cherry")
+        {
+            Destroy(collision.gameObject);  // 刪除
+            onEat.Invoke();                 // 呼叫事件
+        }
+    }
+
     //方法
     private void Walk()
     {
@@ -58,6 +74,7 @@ public class fox : MonoBehaviour{  //類別 類別名稱
         {
             isGround = false;
             foxyee.AddForce(new Vector2(0,jump));
+            aud.PlayOneShot(soundJum, 1.5f);           // 播放一次音效(音效片段，音量)
         }
     }
     /// <summary>
